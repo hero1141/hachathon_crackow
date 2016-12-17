@@ -6,7 +6,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <body>
+    <body>
       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -27,18 +27,21 @@
                     <li>
                         <%= link_to "Zaloguj się", new_user_session_path %>
                     </li>
-                  <% else %>    
+                    <li>
+                      <%= link_to "Zaloguj przez Facebook", user_facebook_omniauth_authorize_path %>
+                    </li>
+                  <% else %>
                     <li>
                         <%= link_to "Wyloguj się", destroy_user_session_path, method: 'delete' %>
                     </li>
                     <li>
                         <%= link_to "Edytuj swoje konto", edit_user_registration_path	%>
-                    </li>   
-                  <% end %> 
+                    </li>
+                  <% end %>
                 </ul>
             </div>
         </div>
-    </nav> 
+    </nav>
         <%= yield %>
     <footer>
             <div class="row">

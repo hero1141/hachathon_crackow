@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(version: 20161217185719) do
     t.index ["user_id"], name: "index_games_on_user_id", using: :btree
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "receiver_id"
+    t.integer  "sender_id"
+    t.boolean  "is_read?"
+    t.text     "content"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "description"
@@ -61,6 +70,11 @@ ActiveRecord::Schema.define(version: 20161217185719) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "department"
+    t.boolean  "gender"
+    t.string   "phone"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
