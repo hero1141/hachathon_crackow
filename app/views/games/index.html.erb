@@ -1,0 +1,8 @@
+<h1>Ranking</h1>
+
+<%= @games.each do |game|%>
+  <div>
+    <p> <%= game.user.email %> </p>
+    <p> <%= game.points %> </p>
+  </div>
+<% end %>
