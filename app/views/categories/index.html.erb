@@ -3,15 +3,13 @@
   <% @categories.each do |category| %>
 
   <div class="col-md-4">
-
     <div class="panel panel-default">
       <div class="panel-heading">
-
         <h4><%= category.name %></h4>
       </div>
       <div class="panel-body">
         <p><%= category.description %></p>
-        <%= link_to "Zobacz", category_path(category.id), style: 'margin-left:45%', class: 'btn btn-primary' %>
+        <%= link_to "Zobacz", category_path(category.id), style: 'margin-left:25%; width:50%', class: 'btn btn-primary' %>
       </div>
     </div>
 
@@ -19,7 +17,4 @@
 
 
   <% end %>
-
-
-
 </div>

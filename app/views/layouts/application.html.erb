@@ -35,20 +35,13 @@
                         <%= link_to "Wyloguj się", destroy_user_session_path, method: 'delete' %>
                     </li>
                     <li>
-                        <%= link_to "Edytuj swoje konto", edit_user_registration_path	%>
+                        <%= link_to "Twój profil", static_path(current_user.id)	%>
                     </li>
                   <% end %>
                 </ul>
             </div>
         </div>
-    </nav>
+    </nav> 
         <%= yield %>
-    <footer>
-            <div class="row">
-                <div class="col-lg-12" style="text-align: center">
-                    <p>Copyright Adrian Mróz, Bartek Gładys, Marcin Rzepiel, Damian Nawrot</p>
-                </div>
-            </div>
-        </footer>
   </body>
 </html>

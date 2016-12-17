@@ -41,7 +41,7 @@
                     </div>
                     <div class="panel-body">
                         <p>Aplikacja jest prosta w obsłudze dla młodszych jak i starszych pracowników. Dzięki temu nie napotkamy żadnej bariery przy korzystaniu z niej </p>
-                        <a href="#" class="btn btn-default">Learn More</a>
+                        <a href="#" class="btn btn-default">Dowiedz się więcej</a>
                     </div>
                 </div>
             </div>
@@ -108,10 +108,10 @@
         <div class="well">
             <div class="row">
                 <div class="col-md-8">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
+                    <p>Już teraz przekonaj się jakie zalety posiada nasza aplikacja</p>
                 </div>
                 <div class="col-md-4">
-                    <a class="btn btn-lg btn-default btn-block" href="#">Call to Action</a>
+                  <%= link_to 'Zarejestruj się', new_user_registration_path, class: 'btn btn-default' %>
                 </div>
             </div>
         </div>
@@ -128,21 +128,19 @@
 
 <% else %>
 
+
     <div class="container" style="min-height: 300px">
-        <div class="row">
+        <div class="row" style="margin-top: 50px">
             <div class="col-lg-12">
-                <h1 class="page-header">
-                    Lorem ipsum
-                </h1>
             </div>
             <div class="col-md-4 text-center">
-                <%= link_to "Blog", categories_path, class: "btn btn-info make-bigger-on-hover", style: "width: 200px; height: 200px;"  %>
+                <%= link_to "", categories_path, class: "btn btn-info make-bigger-on-hover fa fa-clipboard", style: "font-size: 50px; width: 200px; height: 200px; padding-top: 75px"  %>
             </div>
             <div class="col-md-4 text-center">
-                <%= link_to "Czat", "#" , class: "btn btn-info make-bigger-on-hover", style: "width: 200px; height: 200px;"  %>
+                <%= link_to "", "#" , class: "btn btn-info make-bigger-on-hover fa fa-comments", style: "font-size: 50px; width: 200px; height: 200px; padding-top: 75px"  %>
             </div>
             <div class="col-md-4 text-center">
-                <%= link_to "Coś tam coś tam", "#" , class: "btn btn-info make-bigger-on-hover", style: "width: 200px; height: 200px;"  %>
+                <%= link_to "", "#" , class: "btn btn-info make-bigger-on-hover fa fa-question", style: "font-size: 50px; width: 200px; height: 200px; padding-top: 75px"  %>
             </div>
         </div>
     </div>
@@ -156,6 +154,7 @@
             });
         })();
     </script>
+
 
 <% end %>
 
