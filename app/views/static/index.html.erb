@@ -1,4 +1,6 @@
- <%= render partial: "slider" %>
+<% if !user_signed_in? %>
+
+<%= render partial: "slider" %>
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -122,4 +124,17 @@
     })
 
     </script>
+
+
+<% else %>
+
+    <% @posts.each do |post| %>
+
+        <%= post.description %>
+
+    <% end %>
+
+
+
+<% end %>
 
