@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+
+  root 'static#index'
   devise_for :users
   get 'static/index'
-  root 'static#index'
+  
 
 end
