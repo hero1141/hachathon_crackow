@@ -3,7 +3,7 @@
 <h1> <%= @category.name %> </h1>
 <br>
 <br>
-<%= form_for @post do |f| %>
+<%= form_for [@category, @post] do |f| %>
 
   <%= f.label "Treść posta"%>: <br>
   <%= f.text_area :description %>
@@ -14,10 +14,6 @@
 
   <%= f.submit %>
 <% end %>
-
-<%= params[:id] %>
-
-<%= link_to "Dodaj nowy post", new_post_path, class:"btn btn-success"%>
 
 <% @posts.each do |p| %>
 
