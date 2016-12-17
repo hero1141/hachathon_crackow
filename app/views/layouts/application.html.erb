@@ -45,11 +45,28 @@
             </ul>
           </div>
         </div>
-    </nav> 
+    </nav>
+
+      <div class="container-fluid">
+        <div class="row">
         <% if current_user %>
-            <%= render partial: "/layouts/chat" %>
+              <div class="col-md-10">
+                <%= yield %>
+              </div>
+              <div class="col-md-2" style="padding-right:0;margin-right:0;position:fixed;left:83.5%;">
+                <%= render partial: "/layouts/chat" %>
+              </div>
+            </div>
+
+        <% else %>
+          <div class="col-md-12">
+            <%= yield %>
+          </div>
+
         <% end %>
-        <%= yield %>
+
+      </div>
+
 
   </body>
 </html>
