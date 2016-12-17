@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'activeadmin', github: 'activeadmin'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'paperclip', '~> 5.0.0'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'font-awesome-rails'
