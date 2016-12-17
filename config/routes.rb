@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
   resources :locations
   resources :messages
   resources :categories do
-    resources :posts
-  end 
+    resources :posts do
+      resources :answers do
+        resources :points
+      end
+    end
+  end
 
   resources :games, only: [:index, :new, :create, :show]
   root 'static#index'
