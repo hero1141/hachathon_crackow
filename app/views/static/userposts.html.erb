@@ -1,0 +1,8 @@
+<div class = "container" style="margin-top: 50px">
+  <% @posts.each do |p| %>
+      <blockquote>
+        <p> <%= p.description %> </p>
+        <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+      </blockquote>
+  <% end %>
+</div>

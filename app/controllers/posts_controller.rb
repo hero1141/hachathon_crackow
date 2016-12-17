@@ -11,7 +11,6 @@ class PostsController < ApplicationController
 
   end
 
-
   def create
     @post = Post.create(user: current_user, category_id: params[:post][:id], description: params[:post][:description])
     redirect_to category_path(params[:post][:id])
