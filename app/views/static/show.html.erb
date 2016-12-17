@@ -71,9 +71,15 @@
             <% end %>
 
           <% else %>
-            <span class="pull-right">
-              <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-            </span>
+              <span class="pull-right">
+
+                <%= link_to(edit_user_registration_path, class: 'btn btn-sm btn-warning') do %>
+
+                    Aktualizuj&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+
+                <% end %>
+              </span>
+
           <% end %>
         </div>
 
