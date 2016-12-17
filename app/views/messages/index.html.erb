@@ -1,0 +1,15 @@
+<div class="jumbotron" style="background-color: rgba(180,180,180,0.8); width: 50%; margin: 0 auto;">
+  <div class="chat_content">
+    <div class="mess">
+      <%= render @messages %>
+    </div>
+  </div>
+  <div class="chat_input" style="width: 50%; margin: 3% auto;">
+    <%= simple_form_for @message, remote: true do |f| %>
+      <%= f.input :content %>
+      <%= f.input :receiver_id, as: :hidden, input_html: {value: params[:receiver_id]} %>
+      <%= f.button :submit %>
+    <% end %>
+  </div>
+
+</div>
