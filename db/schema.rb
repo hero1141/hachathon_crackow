@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(version: 20161217185719) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
-    t.string   "first_name",             limit: 32,              null: false
-    t.string   "last_name",              limit: 32,              null: false
+    t.string   "first_name",             limit: 32
+    t.string   "last_name",              limit: 32
     t.string   "provider"
     t.string   "uid"
     t.string   "department"

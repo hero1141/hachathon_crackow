@@ -5,16 +5,15 @@
 
 <%= form_for [@category, @post] do |f| %>
   <div class="form-group">
-    <%= f.label "Treść posta"%>: <br>
+    <%= f.label "Treść posta (nie może być pusta)"%>: <br>
     <%= f.text_area :description, class: "form-control", rows: 5 %>
   </div>
   <%= f.hidden_field :id, value: params[:id] %>
-
   <%= f.submit "Dodaj post", class: "btn btn-success" %>
 <% end %>
 
-<% @posts.each do |p| %>
 
+<% @posts.each do |p| %>
 <blockquote style="margin-top: 50px">
   <p> <%= p.description %> </p>
   <footer> <%= p.user.first_name %> <%= p.user.last_name %> </footer>
