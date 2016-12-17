@@ -1,3 +1,4 @@
+require "open-uri"
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -29,7 +30,8 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0,20]
       user.first_name = auth.info.name.split[0]   # assuming the user model has a name
       user.last_name = auth.info.name.split[1]
-      # user.image = auth.info.image # assuming the user model has an image
+      img = auth.info.image.sub('http', 'https') unless auth.info.image.include?('https')
+      user.avatar = open(img)
     end
   end
 end
