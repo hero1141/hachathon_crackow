@@ -1,0 +1,9 @@
+<% @locations.each do |location| %>
+  <%= link_to location do %>
+    <blockquote>
+      <p> <%= location.name %> </p>
+      <i><small> <%= location.description[0..100]%></small></i>
+    </blockquote>
+    <br>
+  <% end %>
+<% end %>

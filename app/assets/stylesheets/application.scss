@@ -9,19 +9,15 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
- *
- *= require_tree .
+
  *= require_self
  *= require font-awesome
+
 
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
 
 #chat_nav{
   position: fixed;
@@ -40,6 +36,16 @@
   margin-left: 10%;
   margin-bottom: 2%;
   width: 50%;
+}
+
+#map{
+  margin: 3% auto;
+  width: 60%;
+  height: 60%;
+}
+
+.location{
+  margin: 3% auto 3%;
 }
 
 .chat{
@@ -85,14 +91,13 @@
 .chat-box-online {
     height: 100vh;
     overflow: auto;
-  
 
 }
 
 .chat-box-online-div {
     border: 2px solid black;
     border-bottom: 2px solid black;
-    float: right;;
+    float: right;
 }
 
 .chat-box-online-head {
@@ -113,4 +118,97 @@
     max-width: 30px;
     border: 1px solid #354EA0;
     margin-bottom: 10px;
+}
+/*!
+ * Start Bootstrap - Modern Business (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+/* Global Styles */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.img-portfolio {
+  margin-bottom: 30px;
+}
+
+.img-hover:hover {
+  opacity: 0.8;
+}
+
+/* Home Page Carousel */
+
+header.carousel {
+  height: 50%;
+}
+
+header.carousel .item,
+header.carousel .item.active,
+header.carousel .carousel-inner {
+  height: 100%;
+}
+
+header.carousel .fill {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+/* 404 Page Styles */
+
+.error-404 {
+  font-size: 100px;
+}
+
+/* Pricing Page Styles */
+
+.price {
+  display: block;
+  font-size: 50px;
+  line-height: 50px;
+}
+
+.price sup {
+  top: -20px;
+  left: 2px;
+  font-size: 20px;
+}
+
+.period {
+  display: block;
+  font-style: italic;
+}
+
+/* Footer Styles */
+
+footer {
+  margin: 50px 0;
+}
+
+/* Responsive Styles */
+
+@media(max-width:991px) {
+  .customer-img,
+  .img-related {
+    margin-bottom: 30px;
+  }
+}
+
+@media(max-width:767px) {
+  .img-portfolio {
+    margin-bottom: 15px;
+  }
+
+  header.carousel .carousel {
+    height: 70%;
+  }
 }
