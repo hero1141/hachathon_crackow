@@ -147,5 +147,15 @@
         </div>
     </div>
 
+    <script>
+        (function() {
+            $(".make-bigger-on-hover").hover(function() {
+                $(this).stop(true, false).animate({"width": 300}, 500);
+            }, function() {
+                $(this).stop(true, false).animate({"width": 200}, 500);
+            });
+        })();
+    </script>
+
 <% end %>
 

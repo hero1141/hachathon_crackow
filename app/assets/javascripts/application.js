@@ -15,11 +15,3 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
-
- $(function() {
-            $(".make-bigger-on-hover").hover(function() {
-                $(this).stop(true, false).animate({"width": 300}, 500);
-            }, function() {
-                $(this).stop(true, false).animate({"width": 200}, 500);
-            });
-        });
