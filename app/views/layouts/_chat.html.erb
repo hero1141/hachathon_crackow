@@ -3,7 +3,7 @@
         Piękny super zajebisty czat w chuj
     </div>
     <div class="panel-body chat-box-online">
-        <% User.all.each do |u| %>
+        <% User.where.not('id' => current_user.id).all.each do |u| %>
         <%= link_to messages_path(receiver_id: u.id) do %>
             <div class="chat-box-online-right">
                 <%= u.first_name + " " + u.last_name %>

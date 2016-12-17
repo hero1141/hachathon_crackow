@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161217210031) do
+ActiveRecord::Schema.define(version: 20161217185719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,8 +86,9 @@ ActiveRecord::Schema.define(version: 20161217210031) do
     t.integer  "user_id"
     t.string   "description"
     t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "title",       limit: 64
     t.index ["category_id"], name: "index_posts_on_category_id", using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
@@ -105,8 +106,14 @@ ActiveRecord::Schema.define(version: 20161217210031) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
-    t.string   "first_name",             limit: 32
-    t.string   "last_name",              limit: 32
+
+    t.string   "first_name",             limit: 32,              null: false
+    t.string   "last_name",              limit: 32,              null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+
     t.string   "provider"
     t.string   "uid"
     t.string   "department"
