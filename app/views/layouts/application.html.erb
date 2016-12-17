@@ -45,7 +45,11 @@
             </ul>
           </div>
         </div>
-    </nav>
+    </nav> 
+        <% if current_user %>
+            <%= render partial: "/layouts/chat" %>
+        <% end %>
         <%= yield %>
+
   </body>
 </html>
