@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   get 'static/index'
+  get 'static/userposts/:id' => 'static#userposts'
 
   mount ActionCable.server, at: '/cable'
 

@@ -11,6 +11,10 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def plec
+    self.gender ? 'Kobieta' : 'Mężczyzna'
+  end
+
   has_many :received_messages, class_name: 'Message', foreign_key: 'receiver_id'
   has_many :sended_messages, class_name: 'Message', foreign_key: 'sender_id'
   devise :omniauthable, :omniauth_providers => [:facebook]
