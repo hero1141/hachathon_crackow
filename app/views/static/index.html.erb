@@ -85,7 +85,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">  Lorem ipsum </h2>
+                <h2 class="pa5ge-header">  Lorem ipsum </h2>
             </div>
             <div class="col-md-6">
                 <p> Lorem ipsum </p>
@@ -127,11 +127,24 @@
 
 <% else %>
 
-    <% @posts.each do |post| %>
-
-        <%= post.description %>
-
-    <% end %>
+    <div class="container" style="min-height: 300px">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Lorem ipsum
+                </h1>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="btn btn-info make-bigger-on-hover" style="width: 200px; height: 200px;">Pierwsze</a>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="btn btn-info make-bigger-on-hover" style="width: 200px; height: 200px">Drugie</a>
+            </div>
+            <div class="col-md-4 text-center">
+                <a href="#" class="btn btn-info make-bigger-on-hover" style="width: 200px; height: 200px">Trzecie</a>
+            </div>
+        </div>
+    </div>
 
 
 
