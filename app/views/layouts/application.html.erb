@@ -18,14 +18,11 @@
                   <li>
                     <%= link_to(new_user_registration_path) do	 %>
                         <span class="glyphicon glyphicon-user"></span> Zarejestruj się
-
                     <% end %>
                   </li>
                   <li>
                     <%= link_to(new_user_session_path) do %>
-
                         <span class="glyphicon glyphicon-log-in"></span> Zaloguj się
-
                     <% end %>
                   </li>
                   <li>
@@ -36,9 +33,7 @@
               <% else %>
                   <li>
                     <%= link_to(destroy_user_session_path, method: 'delete') do %>
-
                         <i class="fa fa-sign-out" aria-hidden="true"></i> Wyloguj się
-
                     <% end %>
                   </li>
                   <li>
@@ -50,8 +45,7 @@
             </ul>
           </div>
         </div>
-    </nav> 
-
+    </nav>
         <%= yield %>
   </body>
 </html>
