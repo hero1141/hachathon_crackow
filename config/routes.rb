@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :messages
   resources :categories do
     resources :posts
-  end
+  end 
 
   resources :games, only: [:index, :new, :create, :show]
   root 'static#index'
