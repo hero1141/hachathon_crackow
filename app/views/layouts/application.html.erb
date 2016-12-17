@@ -20,12 +20,21 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                <% if !current_user %>
                     <li>
                         <%= link_to "Zarejestruj się!", new_user_registration_path	 %>
                     </li>
                     <li>
                         <%= link_to "Zaloguj się", new_user_session_path %>
-                    </li>        
+                    </li>
+                  <% else %>    
+                    <li>
+                        <%= link_to "Wyloguj się", destroy_user_session_path, method: 'delete' %>
+                    </li>
+                    <li>
+                        <%= link_to "Edytuj swoje konto", edit_user_registration_path	%>
+                    </li>   
+                  <% end %> 
                 </ul>
             </div>
         </div>
