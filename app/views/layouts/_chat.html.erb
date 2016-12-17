@@ -1,0 +1,15 @@
+<div class="chat-box-online-div">
+    <div class="chat-box-online-head">
+        Piękny super zajebisty czat w chuj
+    </div>
+    <div class="panel-body chat-box-online">
+        <% User.all.each do |u| %>
+        <%= link_to messages_path(receiver_id: u.id) do %>
+            <div class="chat-box-online-right">
+                <%= u.first_name + " " + u.last_name %>
+            </div>
+            <hr class="hr-clas-low" />
+        <% end %>
+        <% end %>
+    </div>
+</div>

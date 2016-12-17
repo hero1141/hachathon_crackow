@@ -75,3 +75,42 @@
   margin: 3% auto;
   padding-left: 10px;
 }
+
+.hr-clas-low {
+    border-top: 1px solid #C5C5C5;
+}
+
+// KURWA CZAT
+
+.chat-box-online {
+    height: 100vh;
+    overflow: auto;
+  
+
+}
+
+.chat-box-online-div {
+    border: 2px solid black;
+    border-bottom: 2px solid black;
+    float: right;;
+}
+
+.chat-box-online-head {
+    padding: 10px 15px;
+    border-bottom: 2px solid black;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+}
+
+.chat-box-online-right {
+    margin-right: 10px;
+    text-align: right;
+    color: #354EA0;
+}
+
+.chat-box-online-right img {
+    max-width: 30px;
+    border: 1px solid #354EA0;
+    margin-bottom: 10px;
+}
