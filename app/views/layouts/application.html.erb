@@ -41,6 +41,11 @@
                         <i class="fa fa-user-circle-o" aria-hidden="true"></i> Your profile
                     <% end %>
                   </li>
+                  <li>
+                    <a id="switch-chat" href="#">
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i> Show chat
+                    </a>
+                  </li>
               <% end %>
             </ul>
           </div>
@@ -49,10 +54,10 @@
         <% if current_user %>
         <div class="container-fluid">
           <div class="row">
-              <div class="col-md-10">
+              <div id="content" class="col-md-12">
                 <%= yield %>
               </div>
-              <div class="col-md-2" style="padding-right:0;margin-right:0;position:fixed;left:83.5%;">
+              <div id="chat" class="col-md-2" style="display:none; padding-right:0;margin-right:0;position:fixed;left:83.5%;">
                 <%= render partial: "/layouts/chat" %>
               </div>
             </div>
@@ -69,5 +74,28 @@
           </div>
         </div>
         <% end %>
+
+        <script>
+          var isChatOpen = false;
+
+          $(function() {
+            $("#switch-chat").on("click", function(e) {
+              e.preventDefault();
+              if(isChatOpen) {
+                isChatOpen = false;
+                $(this).html("<i class=\"fa fa-user-circle-o\" aria-hidden=\"true\"></i> Show chat");
+                $("#content").removeClass("col-md-9").addClass("col-md-12");
+                $("#chat").css("display", "none");
+              }
+              else {
+                isChatOpen = true;
+                $(this).html("<i class=\"fa fa-user-circle-o\" aria-hidden=\"true\"></i> Close chat");
+                $("#content").removeClass("col-md-12").addClass("col-md-9");
+                $("#chat").css("display", "block");
+              }
+            });
+          });
+        </script>
+
   </body>
 </html>
