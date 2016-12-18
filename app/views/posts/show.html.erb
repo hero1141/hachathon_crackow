@@ -1,0 +1,54 @@
+  <div class="row" style="padding-top:2em;">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4>Tytuł: <%= @post.title %></h4>
+        </div>
+        <div class="panel-body">
+          <p>Opis: <%= @post.description %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-md-12 well text-center" style="margin-top:5em;margin-bottom:5em;"><h3>Odpowiedzi:</h3></div>
+
+  <% @answers.each do |answer| %>
+
+      <div class="row" style="padding-top:2em;">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4>Dodał: <%= answer.user.first_name != '' && answer.user.last_name != '' ? answer.user.full_name : answer.user.email %></h4>
+            </div>
+            <div class="panel-body">
+              <p>Opis: <%= answer.content %><span class="pull-right"><% answer.user_id === current_user.id %>
+                <%= link_to(category_post_answer_path(params[:category_id], params[:id], answer.id), method: :delete) do %>
+                  <span class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                <% end %>
+              </span></p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+  <% end %>
+
+
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= form_for [@category, @post, @answer] do |f| %>
+        <div class="form-group">
+          <%= f.label "Treść komentarza (nie może być pusta)"%>: <br>
+          <%= f.text_area :content, class: "form-control", rows: 3 %>
+        </div>
+        <%= f.hidden_field :id, value: params[:id] %>
+        <%= f.hidden_field :post_id, value: @post.id %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.submit "Dodaj komentarz", class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>

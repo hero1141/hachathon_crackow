@@ -1,21 +1,28 @@
-<div style="margin-top: 20px">
+<div style="margin-top: 30px">
 
-<h1> <%= @category.name %> </h1>
+<h1 style="margin-bottom: 30px"> You are in <%= @category.name.downcase %> section </h1>
+
 
 
 <%= form_for [@category, @post] do |f| %>
+      <div class="form-group">
+        <%= f.label "Tytuł posta (nie może być pusty)" %>: <br>
+        <%= f.text_area :title, class: "form-control", rows: 1 %>
+      </div>
+
   <div class="form-group">
-    <%= f.label "Treść posta (nie może być pusta)"%>: <br>
-    <%= f.text_area :description, class: "form-control", rows: 5 %>
+    <%= f.label "Say something smart"%>: <br>
+    <%= f.text_area :description, class: "form-control", rows: 5, placeholder: "Your post" %>
   </div>
   <%= f.hidden_field :id, value: params[:id] %>
-  <%= f.submit "Dodaj post", class: "btn btn-success" %>
+  <%= f.submit "Add post", class: "btn btn-success" %>
 <% end %>
 
 
 <% @posts.each do |p| %>
 <blockquote style="margin-top: 50px">
-  <p> <%= p.description %> </p>
+
+  <p> <%= link_to p.title,  category_post_path(@category.id, p.id) %> </p>
   <footer> <%= p.user.first_name %> <%= p.user.last_name %> </footer>
 </blockquote>
 <% end %>
