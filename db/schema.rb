@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161217233326) do
+ActiveRecord::Schema.define(version: 20161218081258) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,13 +74,11 @@ ActiveRecord::Schema.define(version: 20161217233326) do
   end
 
   create_table "locations", force: :cascade do |t|
-    t.integer  "user_id"
     t.string   "cords"
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["user_id"], name: "index_locations_on_user_id", using: :btree
   end
 
   create_table "messages", force: :cascade do |t|
@@ -110,6 +108,15 @@ ActiveRecord::Schema.define(version: 20161217233326) do
     t.string   "title",       limit: 64
     t.index ["category_id"], name: "index_posts_on_category_id", using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
+  end
+
+  create_table "presences", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "location_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["location_id"], name: "index_presences_on_location_id", using: :btree
+    t.index ["user_id"], name: "index_presences_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -143,9 +150,10 @@ ActiveRecord::Schema.define(version: 20161217233326) do
   add_foreign_key "answers", "posts"
   add_foreign_key "answers", "users"
   add_foreign_key "games", "users"
-  add_foreign_key "locations", "users"
   add_foreign_key "points", "answers"
   add_foreign_key "points", "users"
   add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
+  add_foreign_key "presences", "locations"
+  add_foreign_key "presences", "users"
 end
