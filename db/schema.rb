@@ -144,15 +144,15 @@ ActiveRecord::Schema.define(version: 20161218084821) do
     t.datetime "updated_at",                                     null: false
     t.string   "first_name",             limit: 32,              null: false
     t.string   "last_name",              limit: 32,              null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.string   "provider"
     t.string   "uid"
     t.string   "department"
     t.boolean  "gender"
     t.string   "phone"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

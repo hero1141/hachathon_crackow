@@ -1,4 +1,7 @@
 class MessagesController < ApplicationController
+
+  before_action :authenticate_user!
+
   def index
     @messages = Message.current_chat(current_user.id, params[:receiver_id])
     @message = Message.new

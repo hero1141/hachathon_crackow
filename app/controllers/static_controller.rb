@@ -1,6 +1,6 @@
 class StaticController < ApplicationController
 
-  before_action :authenticate_user!, only: [:show]
+  before_action :authenticate_user!, only: [:show, :userposts, :rank, :table]
 
   def index
     @posts = Post.all.limit(10).order('id desc')

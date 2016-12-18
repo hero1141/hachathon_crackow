@@ -1,5 +1,7 @@
 class PointsController < ApplicationController
 
+  before_action :authenticate_user!
+
   def new
     @czy_istnieje_like = Point.where(user_id: current_user.id, answer_id:params[:answer_id])
 
