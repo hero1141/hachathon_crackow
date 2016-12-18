@@ -58,6 +58,7 @@
                 <%= render partial: "/layouts/chat" %>
               </div>
             </div>
+          </div>
 
         <% else %>
           <% if params[:action] == 'index' %>
@@ -65,15 +66,15 @@
           <% end %>
         <div class="container-fluid">
           <div class="row">
-          <div class="col-md-12">
-
-            <%= yield %>
+            <div class="col-md-12">
+              <%= yield %>
+            </div>
           </div>
+        </div>
 
         <% end %>
 
-          </div>
-        </div>
+
 
 
   </body>
