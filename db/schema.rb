@@ -74,11 +74,13 @@ ActiveRecord::Schema.define(version: 20161218081258) do
   end
 
   create_table "locations", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "cords"
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.index ["user_id"], name: "index_locations_on_user_id", using: :btree
   end
 
   create_table "messages", force: :cascade do |t|
@@ -132,17 +134,17 @@ ActiveRecord::Schema.define(version: 20161218081258) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
-    t.string   "first_name",             limit: 32
-    t.string   "last_name",              limit: 32
+    t.string   "first_name",             limit: 32,              null: false
+    t.string   "last_name",              limit: 32,              null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.string   "provider"
     t.string   "uid"
     t.string   "department"
     t.boolean  "gender"
     t.string   "phone"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
@@ -150,6 +152,7 @@ ActiveRecord::Schema.define(version: 20161218081258) do
   add_foreign_key "answers", "posts"
   add_foreign_key "answers", "users"
   add_foreign_key "games", "users"
+  add_foreign_key "locations", "users"
   add_foreign_key "points", "answers"
   add_foreign_key "points", "users"
   add_foreign_key "posts", "categories"
