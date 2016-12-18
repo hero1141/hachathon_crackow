@@ -15,12 +15,16 @@
   <% end %>
 
   <div class="form-group">
+
     <%= f.label "Password" %> <i> (Leave blank if you do not want to edit) </i><br />
+
     <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
   </div>
 
   <div class="form-group">
-    <%= f.label "Confirm password" %><br />
+
+    <%= f.label "Confirm your password" %><br />
+
     <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
   </div>
 
@@ -30,14 +34,34 @@
   </div>
 
       <div class="form-group">
-        <%= f.label 'Name' %> <br>
+
+        <%= f.label 'First_Name' %> <br>
+
         <%= f.text_field :first_name, class: 'form-control' %>
       </div>
 
       <div class="form-group">
-        <%= f.label 'Last name' %> <br>
+
+        <%= f.label 'Last_Name' %> <br>
+
         <%= f.text_field :last_name, class: 'form-control' %>
       </div>
+
+      <div class="form-group">
+        <%= f.label 'Gender' %> <br>
+        <%= f.select(:gender, {Male: false,Female: true})  %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label 'Department' %> <br>
+        <%= f.text_field :department, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label 'Phone_Number' %> <br>
+        <%= f.text_field :phone, class: 'form-control' %>
+      </div>
+
 
       <div class="form-group">
         <%= f.label "Avatar" %>

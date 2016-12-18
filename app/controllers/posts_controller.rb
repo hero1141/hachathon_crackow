@@ -13,7 +13,7 @@ class PostsController < ApplicationController
     @category = Category.find(params[:category_id])
     @post = Post.find(params[:id])
     @answer = Answer.new
-    @answers = @post.answers
+    @answers = @post.answers.order('id DESC')
     @point = Point.new
 
   end
