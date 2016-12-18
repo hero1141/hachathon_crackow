@@ -21,21 +21,22 @@
         input: {
             x: 0,
             y: 0,
-            mouseLeft: false,
-            color: "black",
-            size: 10
+            mouseLeft: false
         },
+        color: "black",
+        size: 10,
         paths: []
     };
 
     function onUpdate() {
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         for(var j = 0; j < app.paths.length; j++) {
             var path = app.paths[j];
             if(path.points.length < 2) continue;
-            ctx.save();
+            //ctx.save();
             ctx.beginPath();
             ctx.moveTo(path.points[0].x, path.points[0].y);
             for(var i = 1; i < path.points.length; i++) {
@@ -43,14 +44,16 @@
             }
             ctx.strokeStyle = path.color;
             ctx.lineWidth = path.size;
-            ctx.lineCap = 'round';
+            ctx.lineCap = "round";
+            ctx.lineJoin = "round";
             ctx.stroke();
-            //ctx.closePath();
-            ctx.restore();
+            //ctx.restore();
         }
 
         window.requestAnimationFrame(onUpdate);
+    
     }
+
     window.onmousedown = function(e) {
         app.input.mouseLeft = true;
         console.log("paint");
