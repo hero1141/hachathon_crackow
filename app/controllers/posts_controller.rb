@@ -14,12 +14,13 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @answer = Answer.new
     @answers = @post.answers
+    @point = Point.new
+
   end
 
   def create
 
     @post = Post.create(user: current_user, category_id: params[:post][:id], description: params[:post][:description], title: params[:post][:title])
     redirect_to category_path(params[:post][:id])
-
   end
 end

@@ -2,41 +2,51 @@
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h4> <%= @post.title %></h4>
+          <h4>Title: <%= @post.title %></h4>
         </div>
         <div class="panel-body">
-          <p> <%= @post.description %></p>
+          <p>Description: <%= @post.description %></p>
         </div>
       </div>
     </div>
   </div>
 
-    <div class="col-md-12 well text-center" style="margin-top:5em;margin-bottom:5em;"><h3> Comments: </h3></div>
-
+    <% if @answers.count > 0 %>
+      <div class="col-md-12 well text-center" style="margin-top:5em;margin-bottom:5em;"><h3>Answers:</h3></div>
+    <% end %>
   <% @answers.each do |answer| %>
 
       <div class="row" style="padding-top:2em;">
         <div class="col-md-8 col-md-offset-2">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h4>Added by: <%= answer.user.first_name != '' && answer.user.last_name != '' ? answer.user.full_name : answer.user.email %></h4>
+              <h4>Created by: <%= answer.user.first_name != '' && answer.user.last_name != '' ? answer.user.full_name : answer.user.email %></h4>
             </div>
             <div class="panel-body">
-              <p>Content: <%= answer.content %><span class="pull-right"><% answer.user_id === current_user.id %>
-                <%= link_to(category_post_answer_path(params[:category_id], params[:id], answer.id), method: :delete) do %>
-                  <span class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></span>
+              <p>Content: <%= answer.content %><span class="pull-right">
+                <%  if answer.user_id === current_user.id %>
+                  <%= link_to(category_post_answer_path(params[:category_id], params[:id], answer.id), method: :delete) do %>
+                    <span class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                  <% end %>
+                <% else %>
+                <% punkt = Point.where(user_id: current_user.id, answer_id: answer.id).limit(1).first %>
+                    <% if Point.where(user_id: current_user.id, answer_id: answer.id).count == 0 %>
+                        <%= link_to(new_category_post_answer_point_path(@category.id,@post.id,answer.id), class: 'btn btn-primary') do %>
+                              <%= answer.points.count.nil? ? 0: answer.points.count %>&nbsp;<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+
+                            <% end %>
+                    <% else %>
+                          <%= link_to(category_post_answer_point_path(@category.id,@post.id,answer.id, punkt.id), method: 'delete', class: 'btn btn-danger') do %>
+                           <%= answer.points.count.nil? ? 0: answer.points.count %>&nbsp;<i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                        <% end %>
+                    <% end %>
                 <% end %>
               </span></p>
-
             </div>
           </div>
         </div>
       </div>
-
-
   <% end %>
-
-
 
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
@@ -48,7 +58,7 @@
         <%= f.hidden_field :id, value: params[:id] %>
         <%= f.hidden_field :post_id, value: @post.id %>
         <%= f.hidden_field :user_id, value: current_user.id %>
-        <%= f.submit "Add comment", class: "btn btn-success" %>
+        <%= f.submit "Dodaj komentarz", class: "btn btn-success", style: 'margin-bottom:2em;  ' %>
     <% end %>
   </div>
 </div>
