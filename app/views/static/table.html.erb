@@ -1,16 +1,16 @@
-
 <br>
 <table>
     <tr>
         <td>
             <canvas id="canvas" width="800" height="600" style="border: 3px solid black"></canvas>
         </td>
-        <td>
+        <td style="text-align: center">
             <a id="black" href="#" class="btn" style="background-color: black; width: 40px; height: 40px;"></a><br>
             <a id="white" href="#" class="btn" style="background-color: white; width: 40px; height: 40px; border: 1px solid;"></a><br>
             <a id="red" href="#" class="btn" style="background-color: red; width: 40px; height: 40px;"></a><br>
             <a id="green" href="#" class="btn" style="background-color: green; width: 40px; height: 40px;"></a><br>
             <a id="blue" href="#" class="btn" style="background-color: blue; width: 40px; height: 40px;"></a><br>
+            <a id="size2" href="#" class="btn" style="border-radius: 2px; background-color: black; width: 5px; height: 5px; padding: 0px;"></a><br>
             <a id="size10" href="#" class="btn" style="border-radius: 10px; background-color: black; width: 10px; height: 10px; padding: 0px;"></a><br>
             <a id="size20" href="#" class="btn" style="border-radius: 20px; background-color: black; width: 20px; height: 20px; padding: 0px;"></a><br>
             <a id="size30" href="#" class="btn" style="border-radius: 30px; background-color: black; width: 30px; height: 30px; padding: 0px;"></a><br>
@@ -19,7 +19,6 @@
         </td>
     </tr>
 </table>
-
 <script>
 
     var app = {
@@ -65,7 +64,31 @@
 
     }
 
-    window.onmousedown = function(e) {
+    document.getElementById("canvas").addEventListener("mousedown", function(e) {
+        if(e.button == 1) app.cameraMove = true;
+        else if(!app.input.mouseLeft) {
+            app.input.mouseLeft = true;
+            App.painter.speak({start:[app.input.x, app.input.y], color: app.color, size: app.size});
+        }
+    });
+
+    document.getElementById("canvas").addEventListener("mouseup", function(e) {
+        if(e.button == 1) app.cameraMove = false;
+        else if(app.input.mouseLeft) {
+            app.input.mouseLeft = false;
+            App.painter.speak({end:[app.input.x, app.input.y]});
+        }
+    });
+
+    document.getElementById("canvas").addEventListener("mouseout", function(e) {
+        if(e.button == 1) app.cameraMove = false;
+        if(app.input.mouseLeft) {
+            app.input.mouseLeft = false;
+            App.painter.speak({end:[app.input.x, app.input.y]});
+        }
+    });
+
+    /*window.onmousedown = function(e) {
         if(e.button == 1) app.cameraMove = true;
         else {
             app.input.mouseLeft = true;
@@ -78,7 +101,8 @@
             app.input.mouseLeft = false;
             App.painter.speak({end:[app.input.x, app.input.y]});
         }
-    };
+    };*/
+
     document.getElementById("canvas").addEventListener("mousemove", function(e) {
         if(app.cameraMove) {
             app.cameraX += e.movementX;
@@ -101,6 +125,7 @@
     $("#red").click(function(e) { e.preventDefault(); app.color = "red"; });
     $("#green").click(function(e) { e.preventDefault(); app.color = "green"; });
     $("#blue").click(function(e) { e.preventDefault(); app.color = "blue"; });
+    $("#size2").click(function(e) { e.preventDefault(); app.size = 2; });
     $("#size10").click(function(e) { e.preventDefault(); app.size = 10; });
     $("#size20").click(function(e) { e.preventDefault(); app.size = 20; });
     $("#size30").click(function(e) { e.preventDefault(); app.size = 30; });
