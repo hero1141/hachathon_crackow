@@ -1,0 +1,2 @@
+module BlackboardsHelper
+end

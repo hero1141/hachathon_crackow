@@ -21,7 +21,7 @@ class StaticController < ApplicationController
   end
 
   def table
-
+    @blackboard = Blackboard.new
   end
 
 end
