@@ -16,6 +16,8 @@ class StaticController < ApplicationController
     @posts = @user.posts
   end
 
+  def table
 
+  end
 
 end

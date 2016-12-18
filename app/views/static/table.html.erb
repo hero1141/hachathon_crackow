@@ -1,0 +1,36 @@
+<canvas id="canvas" width="800" height="600" style="border: 3px solid black"></canvas>
+
+
+<script>
+    var app = {
+        input: {
+            x: 0,
+            y: 0,
+            mouseLeft: false
+        }
+    };
+
+    function onUpdate() {
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        window.requestAnimationFrame(onUpdate);
+    }
+    window.onmousedown = function(e) {
+        app.input.mouseLeft = true;
+    };
+    window.onmouseup = function(e) {
+        app.input.mouseLeft = false;
+    };
+    document.getElementById("canvas").addEventListener("mousemove", function(e) {
+        var newx = e.clientX;
+        var newy = e.clientY;
+        if(app.input.mouseLeft) {
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            App.painter.speak({start:[app.input.x, app.input.y], end: [newx, newy], width: canvas.width, height: canvas.height });
+            }
+        app.input.x = newx;
+        app.input.y = newy;
+    });
+    onUpdate();
+</script>
