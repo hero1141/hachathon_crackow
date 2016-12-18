@@ -1,12 +1,12 @@
 <div class="chat-box-online-div">
     <div class="chat-box-online-head">
-        Piękny super zajebisty czat w chuj
+        Porozmawiaj z innymi
     </div>
     <div class="panel-body chat-box-online">
         <% User.where.not('id' => current_user.id).all.each do |u| %>
         <%= link_to messages_path(receiver_id: u.id) do %>
             <div class="chat-box-online-right">
-                <%= u.first_name + " " + u.last_name %>
+                <%= u.first_name == '' || u.last_name == '' ? u.email : u.full_name %>
             </div>
             <hr class="hr-clas-low" />
         <% end %>
