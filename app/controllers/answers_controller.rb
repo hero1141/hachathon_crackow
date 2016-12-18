@@ -4,4 +4,9 @@ class AnswersController < ApplicationController
     redirect_to category_post_path(params[:category_id], params[:post_id])
   end
 
+  def destroy
+    @answer = Answer.find(params[:id]).destroy
+    redirect_to category_post_path(params[:category_id], params[:post_id])
+  end
+
 end
