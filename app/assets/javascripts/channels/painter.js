@@ -1,3 +1,4 @@
+var n = 0;
 App.painter = App.cable.subscriptions.create("PainterChannel", {
   connected: function() {
     // Called when the subscription is ready for use on the server
@@ -8,31 +9,41 @@ App.painter = App.cable.subscriptions.create("PainterChannel", {
   },
 
   received: function(data) {
-    if('start' in data.cords) {
-      app.paths.push({
-          color: data.cords.color,
-          size: data.cords.size,
-          points: [{
-              x: data.cords.start[0]-20,
-              y: data.cords.start[1]-50
-          }]
+    if(window.location.pathname == '/table'){
+      if('start' in data.cords) {
+        app.paths.push({
+            color: data.cords.color,
+            size: data.cords.size,
+            points: [{
+                x: data.cords.start[0],
+                y: data.cords.start[1]
+            }]
+          });
+      }
+      else if('end' in data.cords) {
+        app.paths[app.paths.length - 1].points.push({
+            x: data.cords.end[0],
+            y: data.cords.end[1]
         });
+      }
+      else if('coords' in data.cords) {
+        app.paths[app.paths.length - 1].points.push({
+            x: data.cords.coords[0],
+            y: data.cords.coords[1]
+        }); 
+      }
+      else if('clear' in data.cords){
+          app.paths = [];
+      }
     }
-    else if('end' in data.cords) {
-      app.paths[app.paths.length - 1].points.push({
-          x: data.cords.end[0]-20,
-          y: data.cords.end[1]-50
+    else if(n == 0){
+      $.notify({
+        message: 'Ktoś pisze na TABLICY!'
       });
     }
-    else if('coords' in data.cords) {
-      app.paths[app.paths.length - 1].points.push({
-          x: data.cords.coords[0]-20,
-          y: data.cords.coords[1]-50
-      });
-    }
-    // Called when there's incoming data on the websocket for this channel
+    n++;
+    if(n==1000) n = 0;
   },
-
   speak: function(data) {
     return this.perform('speak', data);
   }

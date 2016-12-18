@@ -10,6 +10,7 @@
       </div>
     </div>
   </div>
+
     <% if @answers.count > 0 %>
       <div class="col-md-12 well text-center" style="margin-top:5em;margin-bottom:5em;"><h3><i class="fa fa-commenting" aria-hidden="true"></i>
         Answers:</h3></div>
@@ -52,7 +53,7 @@
   <div class="col-md-8 col-md-offset-2">
     <%= form_for [@category, @post, @answer] do |f| %>
         <div class="form-group">
-          <%= f.label "Treść komentarza (nie może być pusta)"%>: <br>
+          <%= f.label "Comment content (can't be blank)"%>: <br>
           <%= f.text_area :content, class: "form-control", rows: 3 %>
         </div>
         <%= f.hidden_field :id, value: params[:id] %>

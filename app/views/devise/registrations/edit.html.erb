@@ -1,6 +1,6 @@
 <div class="col-md-4 col-md-offset-4">
 
-<h2> Edytuj swój profil </h2>
+<h2> Edit your profile </h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f| %>
   <%= devise_error_messages! %>
@@ -15,12 +15,16 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label "Password" %> <i> (Zostaw puste jeśli nie chcesz tego edytować) </i><br />
+
+    <%= f.label "Password" %> <i> (Leave blank if you do not want to edit) </i><br />
+
     <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
   </div>
 
   <div class="form-group">
+
     <%= f.label "Confirm your password" %><br />
+
     <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
   </div>
 
@@ -30,12 +34,16 @@
   </div>
 
       <div class="form-group">
+
         <%= f.label 'First_Name' %> <br>
+
         <%= f.text_field :first_name, class: 'form-control' %>
       </div>
 
       <div class="form-group">
+
         <%= f.label 'Last_Name' %> <br>
+
         <%= f.text_field :last_name, class: 'form-control' %>
       </div>
 
@@ -63,6 +71,7 @@
   <div class="actions" style="margin-bottom:5em;">
     <%= f.submit "Update", class: "btn btn-default col-md-12" %>
   </div>
+  
 <% end %>
 
 </div>

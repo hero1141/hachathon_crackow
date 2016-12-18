@@ -16,24 +16,30 @@
               <table class="table table-user-information">
                 <tbody>
                 <tr>
+
                   <td>Department:</td>
+
                   <td><%= @user.department.nil?  ? 'Not introduced' : @user.department %></td>
                 </tr>
                 <tr>
                 <tr>
                   <td>Gender</td>
+
                   <td><%= @user.gender.nil? ? 'Not introduced' : @user.plec %></td>
                 </tr>
                 <tr>
-                  <td>Email</td>
+                  <td>Email:</td>
                   <td><%= @user.email %></td>
                 </tr>
-                <td>Telephone number</td>
+
+                <td>Phone number</td>
+
                 <td><%= @user.phone.nil? ? 'Not introduced' : @user.phone %>
                 </td>
                 </tr>
                 </tbody>
               </table>
+
                 <%= link_to'All posts',{ action: 'userposts'}, id: @user.id, class: 'btn btn-primary pull-right' %>
             </div>
           </div>
@@ -47,6 +53,7 @@
               <span class="pull-right">
                 <%= link_to(edit_user_registration_path, class: 'btn btn-sm btn-warning') do %>
                     Update&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    Edit your account <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 <% end %>
               </span>
           <% end %>
