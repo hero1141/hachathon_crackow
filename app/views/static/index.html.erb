@@ -10,7 +10,7 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-
+                    
                         <h4><i class="fa fa-fw fa-check"></i> Bądź na bieżąco</h4>
                     </div>
                     <div class="panel-body">
@@ -52,32 +52,32 @@
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="http://placekitten.com/g/700/450" alt="">
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="http://placekitten.com/g/700/450" alt="">
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="http://placekitten.com/g/700/450" alt="">
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="http://placekitten.com/g/700/450" alt="">
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="http://placekitten.com/g/700/450" alt="">
                 </a>
             </div>
             <div class="col-md-4 col-sm-6">
                 <a href="portfolio-item.html">
-                    <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                    <img class="img-responsive img-portfolio img-hover" src="http://placekitten.com/g/700/450" alt="">
                 </a>
             </div>
         </div>
@@ -99,7 +99,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
             </div>
             <div class="col-md-6">
-                <img class="img-responsive" src="http://placehold.it/700x450" alt="">
+                <img class="img-responsive" src="http://placekitten.com/g/700/450" alt="">
             </div>
         </div>
         
@@ -131,17 +131,58 @@
             <div class="col-md-12">
             </div>
             <div class="col-md-4 text-center">
-                <%= link_to "", categories_path, class: "btn btn-info make-bigger-on-hover fa fa-clipboard", style: "font-size: 50px; width: 200px; height: 200px; padding-top: 75px"  %>
-                <h2> Znajdź coś co Cię interesuje </h2>
+                <%= link_to(categories_path) do %>
+                    <button class = "btn btn-info make-bigger-on-hover fa fa-comments", style = "font-size: 50px; width: 200px; height: 200px; color: black"> <br> Society </button> 
+                <% end %>
             </div>
             <div class="col-md-4 text-center">
-                <%= link_to "", "#" , class: "btn btn-info make-bigger-on-hover fa fa-comments", style: "font-size: 50px; width: 200px; height: 200px; padding-top: 75px"  %>
-                <h2> Lorem ipsum </h2>
+               <%= link_to("#") do %>
+                    <button class = "btn btn-info make-bigger-on-hover fa fa-gamepad", style = "font-size: 50px; width: 200px; height: 200px; color: black"> <br> Play </button> 
+                <% end %>
             </div>
             <div class="col-md-4 text-center">
-                <%= link_to "", "#" , class: "btn btn-info make-bigger-on-hover fa fa-question", style: "font-size: 50px; width: 200px; height: 200px; padding-top: 75px"  %>
-                <h2> Lorem ipsum </h2>
+                <%= link_to("#") do %>
+                    <button class = "btn btn-info make-bigger-on-hover fa fa-info", style = "font-size: 50px; width: 200px; height: 200px; color: black"> <br> About </button> 
+                <% end %>
             </div>
+        </div>
+        <br> <br> <br>
+        <div class ="col-md-12">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-check"></i> Stay updated </h4>
+                    </div>
+                    <div class="panel-body">
+                        <p> Keep up to date, check what is happening in the sections that you are interested in!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-gamepad"></i> Be creative </h4>
+                    </div>
+                    <div class="panel-body">
+                        <p> Be creative! Add something back to our company's image!</p>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-info"></i> Help us </h4>
+                    </div>
+                    <div class="panel-body">
+                        <p> Help us grow our company! </p>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+
+
         </div>
 
 
