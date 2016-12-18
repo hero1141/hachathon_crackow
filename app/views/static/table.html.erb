@@ -1,4 +1,4 @@
-<br>
+
 <br>
 <table>
     <tr>
@@ -19,7 +19,13 @@
         </td>
     </tr>
 </table>
+</div>
+<div class="col-md-4">
+  <video height="300" id="localVideo"></video>
+  <div id="remotesVideos"></div>
+</div>
 <script>
+
     var app = {
         cameraX: 0,
         cameraY: 0,
@@ -60,7 +66,7 @@
         }
 
         window.requestAnimationFrame(onUpdate);
-    
+
     }
 
     window.onmousedown = function(e) {
