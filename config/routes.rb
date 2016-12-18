@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   get 'static/index'
   get 'static/userposts/:id' => 'static#userposts'
-
+  get '/table' => 'static#table'
   mount ActionCable.server, at: '/cable'
 
 end
