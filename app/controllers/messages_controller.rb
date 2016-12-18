@@ -10,6 +10,7 @@ class MessagesController < ApplicationController
       html = render_message(@message)
       ActionCable.server.broadcast "user_#{@message.receiver_id}", message: html
       ActionCable.server.broadcast "user_#{@message.sender_id}", message: html
+      ActionCable.server.broadcast "user_#{@message.receiver_id}", alert: {email: @message.sender.email, id: @message.sender.id}
     end
   end
 

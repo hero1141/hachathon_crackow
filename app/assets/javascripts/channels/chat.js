@@ -8,7 +8,13 @@ App.chat = App.cable.subscriptions.create("ChatChannel", {
   },
 
   received: function(data) {
-    console.log(data);
+    if(data.alert && window.location.pathname != '/messages'){
+      $.notify({
+      	message: '<a href="messages?receiver_id='+data.alert.id+'">New message from'+data.alert.email+' </a>'
+      },{
+      	icon_type: 'image'
+      });
+    }
     $('.mess').append(data.message);
     // Called when there's incoming data on the websocket for this channel
   }
