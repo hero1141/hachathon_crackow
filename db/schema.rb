@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161217233326) do
+ActiveRecord::Schema.define(version: 20161218084821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 20161217233326) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_answers_on_post_id", using: :btree
     t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
+  end
+
+  create_table "blackboards", force: :cascade do |t|
+    t.string   "name"
+    t.json     "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "thumbnail"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -125,8 +133,8 @@ ActiveRecord::Schema.define(version: 20161217233326) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
-    t.string   "first_name",             limit: 32
-    t.string   "last_name",              limit: 32
+    t.string   "first_name",             limit: 32,              null: false
+    t.string   "last_name",              limit: 32,              null: false
     t.string   "provider"
     t.string   "uid"
     t.string   "department"

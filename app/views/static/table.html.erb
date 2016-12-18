@@ -1,3 +1,30 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Save blackboard</h4>
+      </div>
+      <%= form_for @blackboard, html: {id: "addForm"} do |f| %>
+      <div class="modal-body">
+        <div class="form-group">
+            <%= f.label :name %>
+            <%= f.text_field :name, class: "form-control" %>
+        </div>
+            <%= f.hidden_field :data, id: 'formData' %>
+            <%= f.hidden_field :thumbnail, id: 'formThumbnail' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="formSubmit" type="button" class="btn btn-primary">Save</button>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <br>
 <table>
     <tr>
@@ -5,6 +32,11 @@
             <canvas id="canvas" width="800" height="600" style="border: 3px solid black"></canvas>
         </td>
         <td style="text-align: center">
+            <%= link_to "Gallery", blackboards_path, class: "btn btn-success" %><br>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                Save
+            </button><br>
+            <a id="clear" href="#" class="btn btn-danger"> Clear </a><br><br>
             <a id="black" href="#" class="btn" style="background-color: black; width: 40px; height: 40px;"></a><br>
             <a id="white" href="#" class="btn" style="background-color: white; width: 40px; height: 40px; border: 1px solid;"></a><br>
             <a id="red" href="#" class="btn" style="background-color: red; width: 40px; height: 40px;"></a><br>
@@ -14,8 +46,7 @@
             <a id="size10" href="#" class="btn" style="border-radius: 10px; background-color: black; width: 10px; height: 10px; padding: 0px;"></a><br>
             <a id="size20" href="#" class="btn" style="border-radius: 20px; background-color: black; width: 20px; height: 20px; padding: 0px;"></a><br>
             <a id="size30" href="#" class="btn" style="border-radius: 30px; background-color: black; width: 30px; height: 30px; padding: 0px;"></a><br>
-            <a id="size40" href="#" class="btn" style="border-radius: 40px; background-color: black; width: 40px; height: 40px; padding: 0px;"></a><br>
-            <a id="clear" href="#" class="btn btn-danger"> Clear </a>
+            <a id="size40" href="#" class="btn" style="border-radius: 40px; background-color: black; width: 40px; height: 40px; padding: 0px;"></a>
         </td>
     </tr>
 </table>
@@ -119,18 +150,25 @@
         app.input.x = newx;
         app.input.y = newy;
     });
-
-    $("#black").click(function(e) { e.preventDefault(); app.color = "black"; });
-    $("#white").click(function(e) { e.preventDefault(); app.color = "white"; });
-    $("#red").click(function(e) { e.preventDefault(); app.color = "red"; });
-    $("#green").click(function(e) { e.preventDefault(); app.color = "green"; });
-    $("#blue").click(function(e) { e.preventDefault(); app.color = "blue"; });
-    $("#size2").click(function(e) { e.preventDefault(); app.size = 2; });
-    $("#size10").click(function(e) { e.preventDefault(); app.size = 10; });
-    $("#size20").click(function(e) { e.preventDefault(); app.size = 20; });
-    $("#size30").click(function(e) { e.preventDefault(); app.size = 30; });
-    $("#size40").click(function(e) { e.preventDefault(); app.size = 40; });
-    $("#clear").click(function(e) { e.preventDefault(); App.painter.speak({clear: "token"}); });
+    $(function() {
+        $("#black").click(function(e) { e.preventDefault(); app.color = "black"; });
+        $("#white").click(function(e) { e.preventDefault(); app.color = "white"; });
+        $("#red").click(function(e) { e.preventDefault(); app.color = "red"; });
+        $("#green").click(function(e) { e.preventDefault(); app.color = "green"; });
+        $("#blue").click(function(e) { e.preventDefault(); app.color = "blue"; });
+        $("#size2").click(function(e) { e.preventDefault(); app.size = 2; });
+        $("#size10").click(function(e) { e.preventDefault(); app.size = 10; });
+        $("#size20").click(function(e) { e.preventDefault(); app.size = 20; });
+        $("#size30").click(function(e) { e.preventDefault(); app.size = 30; });
+        $("#size40").click(function(e) { e.preventDefault(); app.size = 40; });
+        $("#clear").click(function(e) { e.preventDefault(); App.painter.speak({clear: "token"}); });
+        $("#formSubmit").click(function(e) {
+            $("#formData").val(JSON.stringify(app.paths));
+            $("#formThumbnail").val(document.getElementById("canvas").toDataURL());
+            console.log($("#formThumbnail").val());
+            $("#addForm").submit();
+        });
+    });
 
     onUpdate();
 </script>
