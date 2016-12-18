@@ -14,4 +14,14 @@ Category.create(name: 'Project menager', description: "Look at our projects mena
 Category.create(name: 'Dealer', description: "Look at our dealers section")
 Category.create(name: 'Marketer', description: "Look at our marketers section")
 
+titles = ["React", "Angular", "Ruby on rails", "PHP", "C++", "ASP .NET", "Lua", "Java", "Pascal", "C#"]
+description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+
+Category.all.each { |c| c.posts.create(title: titles[rand(1...6)], user_id: 1, description: description)}
+Category.all.each { |c| c.posts.create(title: titles[rand(1...6)], user_id: 2, description: description)}
+Category.all.each { |c| c.posts.create(title: titles[rand(1...6)], user_id: 3, description: description)}
+Category.all.each { |c| c.posts.create(title: titles[rand(1...6)], user_id: 4, description: description)}
+Category.all.each { |c| c.posts.create(title: titles[rand(1...6)], user_id: 2, description: description)}
+
 

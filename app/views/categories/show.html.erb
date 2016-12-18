@@ -1,29 +1,65 @@
 <div style="margin-top: 30px">
 
-<h1 style="margin-bottom: 30px; text-align: center"> You are in <%= @category.name.downcase %> section </h1>
-
-<%= form_for [@category, @post] do |f| %>
-      <div class="form-group">
-        <%= f.label "Post title (can't be blank): " %> <br>
-        <%= f.text_area :title, class: "form-control", rows: 1, placeholder: "Your title" %>
-      </div>
-
-  <div class="form-group">
-    <%= f.label "Say something smart"%>: <br>
-    <%= f.text_area :description, class: "form-control", rows: 5, placeholder: "Your post" %>
-  </div>
-  <%= f.hidden_field :id, value: params[:id] %>
-  <%= f.submit "Add post", class: "btn btn-success" %>
-<% end %>
-
-<% @posts.each do |p| %>
-<blockquote style="margin-top: 50px">
-  <%= link_to(category_post_path(@category.id, p.id)) do %>
-      <p> <%= p.title %> </p>
-  <% end %>
-  <footer> <%= p.user.first_name %> <%= p.user.last_name %> </footer>
-</blockquote>
-<% end %>
+    <h1 style="margin-bottom: 30px; text-align: center">  <%= @category.name.capitalize  %> section </h1>
 
 
-</div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Add new post
+</button>
+    <br>
+    <br>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Create new post!</h4>
+                </div>
+                <div class="modal-body">
+
+                    <%= form_for [@category, @post] do |f| %>
+                        <div class="form-group">
+                            <%= f.label "Post title (can't be blank): " %> <br>
+                                <%= f.text_area :title, class: "form-control", rows: 1, placeholder: "Your title" %>
+                        </div>
+
+                        <div class="form-group">
+                            <%= f.label "Say something smart"%>: <br>
+                                <%= f.text_area :description, class: "form-control", rows: 5, placeholder: "Your post" %>
+                        </div>
+                        <%= f.hidden_field :id, value: params[:id] %>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <%= f.submit "Add post", class: "btn btn-success" %>
+                        <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <% @posts.each do |p| %>
+        <div class="jumbotron">
+            <%= link_to(category_post_path(@category.id, p.id)) do %>
+                <p>
+                    <%= p.title %>
+                </p>
+                <% end %>
+                    <hr>
+                    <br>
+                    <p>
+                        <%= p.user.first_name %>
+                            <%= p.user.last_name %>
+                    </p>
+                    <p style="font-size: 12px"> Created
+                        <%= ((Time.now.utc - p.created_at) / 60 / 60).round() %> hours ago </p>
+        </div>
+        <% end %>
+
+
+
+</div>  
