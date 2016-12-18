@@ -23,7 +23,8 @@ class User < ApplicationRecord
     received_messages + sended_messages
   end
   has_many :posts
-  has_many :locations
+  has_many :presences
+  has_many :locations, through: :presences 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

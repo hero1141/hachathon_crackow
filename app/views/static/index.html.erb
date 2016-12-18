@@ -10,7 +10,7 @@
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                    
+
                         <h4><i class="fa fa-fw fa-check"></i> Stay updated </h4>
                     </div>
                     <div class="panel-body">
@@ -101,7 +101,7 @@
                 <img class="img-responsive" src="http://placekitten.com/g/700/450" alt="">
             </div>
         </div>
-        
+
         <hr>
         <div class="well">
             <div class="row">
@@ -118,7 +118,7 @@
     <script>
 
     $('.carousel').carousel({
-        interval: 5000 
+        interval: 5000
     })
 
     </script>
@@ -131,21 +131,34 @@
         <div class="row" style="margin-top: 50px">
             <div class="col-md-12">
             </div>
-            <div class="col-md-4 text-center">
-                <%= link_to(categories_path) do %>
-                    <button class = "btn btn-info make-bigger-on-hover fa fa-comments", style = "font-size: 50px; width: 200px; height: 200px; color: black"> <br> Society </button> 
-                <% end %>
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-3 text-center">
+                  <%= link_to(categories_path) do %>
+                      <button class = "btn btn-info make-bigger-on-hover fa fa-comments", style = "font-size: 50px; width: 300px; height: 200px; color: black"> <br> Society </button>
+                  <% end %>
+              </div>
+              <div class="col-md-3 text-center">
+                 <%= link_to(table_path) do %>
+                      <button class = "btn btn-info make-bigger-on-hover fa fa-gamepad", style = "font-size: 50px; width: 300px; height: 200px; color: black"> <br> Play </button>
+                  <% end %>
+              </div>
             </div>
-            <div class="col-md-4 text-center">
-               <%= link_to(table_path) do %>
-                    <button class = "btn btn-info make-bigger-on-hover fa fa-gamepad", style = "font-size: 50px; width: 200px; height: 200px; color: black"> <br> Play </button> 
-                <% end %>
-            </div>
-            <div class="col-md-4 text-center">
+            <br>
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-3 text-center">
                 <%= link_to(action: 'rank') do %>
-                    <button class = "btn btn-info make-bigger-on-hover fa fa-university", style = "font-size: 50px; width: 200px; height: 200px; color: black"> <br> Rank </button>
+                    <button class = "btn btn-info make-bigger-on-hover fa fa-university", style = "font-size: 50px; width: 300px; height: 200px; color: black"> <br> Rank </button>
                 <% end %>
+              </div>
+              <div class="col-md-3 text-center">
+                <%= link_to locations_path do %>
+                    <button class = "btn btn-info make-bigger-on-hover fa fa-university", style = "font-size: 50px; width: 300px; height: 200px; color: black"> <br> Events </button>
+                <% end %>
+              </div>
             </div>
+
         </div>
         <br> <br> <br>
         <div class ="col-md-12">
@@ -196,4 +209,3 @@
 
 
 <% end %>
-
