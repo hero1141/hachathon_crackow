@@ -10,13 +10,16 @@ class PostsController < ApplicationController
   end
 
   def show
-
+    @category = Category.find(params[:category_id])
+    @post = Post.find(params[:id])
+    @answer = Answer.new
+    @answers = @post.answers
   end
 
   def create
-    @post = Post.create(user: current_user, category_id: params[:post][:id], description: params[:post][:description])
-    respond_to do |format|
-      format.html {redirect_to category_path(params[:post][:id])}
-      end
+
+    @post = Post.create(user: current_user, category_id: params[:post][:id], description: params[:post][:description], title: params[:post][:title])
+    redirect_to category_path(params[:post][:id])
+
   end
 end
