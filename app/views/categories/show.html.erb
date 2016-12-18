@@ -10,6 +10,7 @@
     <br>
     <br>
     <!-- Modal -->
+  <%= form_for [@category, @post] do |f| %>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -19,7 +20,6 @@
                 </div>
                 <div class="modal-body">
 
-                    <%= form_for [@category, @post] do |f| %>
                         <div class="form-group">
                             <%= f.label "Post title (can't be blank): " %> <br>
                                 <%= f.text_area :title, class: "form-control", rows: 1, placeholder: "Your title" %>
@@ -35,12 +35,12 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <%= f.submit "Add post", class: "btn btn-success" %>
-                        <% end %>
+
                 </div>
             </div>
         </div>
     </div>
-
+  <% end %>
     <br>
     <% @posts.each do |p| %>
         <div class="jumbotron">
