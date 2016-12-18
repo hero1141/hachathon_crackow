@@ -1,61 +1,65 @@
 
-<div class="form-group location">
-  <div class="col-md-4"></div>
-  <div class="col-md-3">
-    <input type="text" id="location" class="form-control" placeholder="Nazwa Lokalizacj(miasto, ulica)" >
-  </div>
-  <div class="col-md-3">
-    <button type="submit" id="location-submit" class="btn btn-success"> Szukaj! </button>
-  </div>
-</div>
-<br>
-<div id="map"></div>
-<%= simple_form_for @location do |f| %>
-  <div class="col-md-4"></div>
-  <div class="col-md-3">
-    <%= f.input :name, label: "Nazwa miejsca/wydarzenia" %>
-    <%= f.input :cords, as: :hidden, required: true %>
-    <%= f.error_notification %>
-    <%= f.error :cords, error: 'Musisz wybrać lokalizację' %>
-    <%= f.input :description, label: "Opis wydarzenia" %>
-    <%= f.button :submit, "Dodaj cel"%>
-    <br/>
-  </div>
-  <br/>
-<% end %>
 
-<script>
+    <div class="form-group location">
+      <div class="col-md-4"></div>
+      <div class="col-md-3">
+        <input type="text" id="location" class="form-control" placeholder="Location's name" >
+      </div>
+      <div class="col-md-3">
+        <button type="submit" id="location-submit" class="btn btn-success"> Search! </button>
+      </div>
+    </div>
+    <br>
+    <div id="map"></div>
 
-  function geocodeAddress(geocoder, resultsMap) {
-    var address = document.getElementById('location').value;
-    geocoder.geocode({'address': address}, function(results, status) {
-      if (status === 'OK') {
-        resultsMap.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-          map: resultsMap,
-          position: results[0].geometry.location
-        });
-        var location_map = $('#location_cords');
-        var res = String(results[0].geometry.location)
-        res = res.substr(1, res.length-2);
-        location_map.val(res);
-      }
-    });
-  }
+    <%= simple_form_for @location do |f| %>
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <%= f.input :name, label: "Event name" %>
+          <%= f.input :cords, as: :hidden, required: true %>
+          <%= f.error_notification %>
+          <%= f.error :cords, error: 'Must choose location' %>
+          <%= f.input :description, label: "Event description" %>
+          <%= f.submit "Add event", class: "btn btn-success" %>
+        </div>
+    <% end %>
+        <br/>
+      <br/>
 
-  function initMap() {
-    var mapCanvas = document.getElementById("map");
-    var mapOptions = {
-      center: new google.maps.LatLng(51.5, -0.2),
-      zoom: 10
+
+
+  <script>
+
+    function geocodeAddress(geocoder, resultsMap) {
+      var address = document.getElementById('location').value;
+      geocoder.geocode({'address': address}, function(results, status) {
+        if (status === 'OK') {
+          resultsMap.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: resultsMap,
+            position: results[0].geometry.location
+          });
+          var location_map = $('#location_cords');
+          var res = String(results[0].geometry.location)
+          res = res.substr(1, res.length-2);
+          location_map.val(res);
+        }
+      });
     }
-    var map = new google.maps.Map(mapCanvas, mapOptions);
-    $('#location-submit').on('click', function(){
-        var geocoder = new google.maps.Geocoder();
-        geocodeAddress(geocoder, map);
-    });
-  }
 
-</script>
+    function initMap() {
+      var mapCanvas = document.getElementById("map");
+      var mapOptions = {
+        center: new google.maps.LatLng(51.5, -0.2),
+        zoom: 10
+      }
+      var map = new google.maps.Map(mapCanvas, mapOptions);
+      $('#location-submit').on('click', function(){
+          var geocoder = new google.maps.Geocoder();
+          geocodeAddress(geocoder, map);
+      });
+    }
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL83WfzxmwshCPup5Hq0WGaNECnXpvxM4&callback=initMap"> </script>
+  </script>
+
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL83WfzxmwshCPup5Hq0WGaNECnXpvxM4&callback=initMap"> </script>

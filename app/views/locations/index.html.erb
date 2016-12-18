@@ -1,9 +1,27 @@
+<br>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+  <a type="button" href="/locations/new" class="btn btn-primary btn-lg" >
+  Add new event
+  </a>
+  </div>
+</div>
+<br>
 <% @locations.each do |location| %>
-  <%= link_to location do %>
-    <blockquote>
-      <p> <%= location.name %> </p>
-      <i><small> <%= location.description[0..100]%></small></i>
-    </blockquote>
-    <br>
-  <% end %>
+<div class="row">
+<div class="col-md-4"></div>
+<div class="col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 style="text-align: center"> <%= location.name %> </h4>
+    </div>
+    <div class="panel-body">
+      <p><%= location.description %></p>
+      <%= link_to "Show me this event! ", location, style: 'margin-left:25%; width:50%', class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
+</div>
+<br>
 <% end %>
