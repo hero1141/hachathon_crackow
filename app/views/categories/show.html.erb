@@ -1,13 +1,11 @@
 <div style="margin-top: 30px">
 
-<h1 style="margin-bottom: 30px"> You are in <%= @category.name.downcase %> section </h1>
-
-
+<h1 style="margin-bottom: 30px; text-align: center"> You are in <%= @category.name.downcase %> section </h1>
 
 <%= form_for [@category, @post] do |f| %>
       <div class="form-group">
-        <%= f.label "Tytuł posta (nie może być pusty)" %>: <br>
-        <%= f.text_area :title, class: "form-control", rows: 1 %>
+        <%= f.label "Post title (can't be blank): " %> <br>
+        <%= f.text_area :title, class: "form-control", rows: 1, placeholder: "Your title" %>
       </div>
 
   <div class="form-group">
@@ -21,8 +19,9 @@
 
 <% @posts.each do |p| %>
 <blockquote style="margin-top: 50px">
-
-  <p> <%= link_to p.title,  category_post_path(@category.id, p.id) %> </p>
+  <%= link_to(category_post_path(@category.id, p.id)) do %>
+      <p> <%= p.title %> </p>
+  <% end %>
   <footer> <%= p.user.first_name %> <%= p.user.last_name %> </footer>
 </blockquote>
 <% end %>
