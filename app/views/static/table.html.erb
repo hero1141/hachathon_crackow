@@ -36,7 +36,8 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                 Save
             </button><br>
-            <a id="clear" href="#" class="btn btn-danger"> Clear </a><br><br>
+            <a id="clear" href="#" class="btn btn-danger"> Clear </a><br>
+            <a id="undo" href="#" class="btn btn-info"> Undo </a><br><br>
             <a id="black" href="#" class="btn" style="background-color: black; width: 40px; height: 40px;"></a><br>
             <a id="white" href="#" class="btn" style="background-color: white; width: 40px; height: 40px; border: 1px solid;"></a><br>
             <a id="red" href="#" class="btn" style="background-color: red; width: 40px; height: 40px;"></a><br>
@@ -51,6 +52,8 @@
     </tr>
 </table>
 <script>
+
+    var currentUser = <%= current_user.id %>;
 
     var app = {
         cameraX: 0,
@@ -99,7 +102,7 @@
         if(e.button == 1) app.cameraMove = true;
         else if(!app.input.mouseLeft) {
             app.input.mouseLeft = true;
-            App.painter.speak({start:[app.input.x, app.input.y], color: app.color, size: app.size});
+            App.painter.speak({start:[app.input.x, app.input.y], color: app.color, size: app.size, userId: currentUser});
         }
     });
 
@@ -107,7 +110,7 @@
         if(e.button == 1) app.cameraMove = false;
         else if(app.input.mouseLeft) {
             app.input.mouseLeft = false;
-            App.painter.speak({end:[app.input.x, app.input.y]});
+            App.painter.speak({end:[app.input.x, app.input.y], userId: currentUser});
         }
     });
 
@@ -115,7 +118,7 @@
         if(e.button == 1) app.cameraMove = false;
         if(app.input.mouseLeft) {
             app.input.mouseLeft = false;
-            App.painter.speak({end:[app.input.x, app.input.y]});
+            App.painter.speak({end:[app.input.x, app.input.y], userId: currentUser});
         }
     });
 
@@ -145,7 +148,7 @@
         var newx = e.clientX - rect.left - app.cameraX;
         var newy = e.clientY - rect.top - app.cameraY;
         if(app.input.mouseLeft) {
-            App.painter.speak({coords: [newx, newy]});
+            App.painter.speak({coords: [newx, newy], userId: currentUser});
         }
         app.input.x = newx;
         app.input.y = newy;
@@ -168,6 +171,7 @@
             console.log($("#formThumbnail").val());
             $("#addForm").submit();
         });
+        $("#undo").click(function(e) { e.preventDefault(); App.painter.speak({undo: "token", userId: currentUser}); });
     });
 
     onUpdate();

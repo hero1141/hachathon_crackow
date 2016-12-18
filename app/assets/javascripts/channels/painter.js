@@ -17,23 +17,46 @@ App.painter = App.cable.subscriptions.create("PainterChannel", {
             points: [{
                 x: data.cords.start[0],
                 y: data.cords.start[1]
-            }]
+            }],
+            userId: data.cords.userId
           });
       }
       else if('end' in data.cords) {
-        app.paths[app.paths.length - 1].points.push({
-            x: data.cords.end[0],
-            y: data.cords.end[1]
-        });
+        for(var i = app.paths.length - 1; i >= 0; i--) {
+          if(app.paths[i].userId == data.cords.userId) {
+            app.paths[i].points.push({
+              x: data.cords.end[0],
+              y: data.cords.end[1]
+            });
+            break;
+          }
+        }
       }
       else if('coords' in data.cords) {
-        app.paths[app.paths.length - 1].points.push({
-            x: data.cords.coords[0],
-            y: data.cords.coords[1]
-        }); 
+        for(var i = app.paths.length - 1; i >= 0; i--) {
+          if(app.paths[i].userId == data.cords.userId) {
+            app.paths[i].points.push({
+              x: data.cords.coords[0],
+              y: data.cords.coords[1]
+            });
+            break;
+          }
+        }
       }
       else if('clear' in data.cords){
           app.paths = [];
+      }
+      else if('undo' in data.cords){
+        for(var i = app.paths.length - 1; i >= 0; i--) {
+          if(app.paths[i].userId == data.cords.userId) {
+            app.paths.splice(i, 1);
+            /*app.paths[i].points.push({
+              x: data.cords.coords[0],
+              y: data.cords.coords[1]
+            });*/
+            break;
+          }
+        }
       }
     }
     else if(n == 0){
