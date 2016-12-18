@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   def index
-    @locations = current_user.try(:locations)
+    @locations = Location.order(created_at: :desc)
   end
   def new
     @location = Location.new
@@ -10,7 +10,6 @@ class LocationsController < ApplicationController
   end
   def create
     @location = Location.new(location_params)
-    @location.user_id = current_user.id
     if @location.save
       redirect_to @location
     else

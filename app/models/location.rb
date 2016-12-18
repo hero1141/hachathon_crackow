@@ -1,3 +1,4 @@
 class Location < ApplicationRecord
-  belongs_to :user
+  has_many :presences
+  has_many :users, through: :presences
 end
