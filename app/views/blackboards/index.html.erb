@@ -3,7 +3,7 @@
 <div class="col-md-4">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4 style="text-align: center"><%= b.name %></h4>
+            <h4 style="text-align: center"><%= link_to b.name, blackboard_path(id: b.id) %></h4>
         </div>
         <div class="panel-body">
             <%= image_tag b.thumbnail, style: "width: 200px; height: 160px;" %>

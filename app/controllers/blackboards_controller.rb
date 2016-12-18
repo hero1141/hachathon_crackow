@@ -7,4 +7,8 @@ class BlackboardsController < ApplicationController
     def index
         @blackboards = Blackboard.all
     end
+
+    def show
+        @blackboard = Blackboard.find(params[:id])
+    end
 end
