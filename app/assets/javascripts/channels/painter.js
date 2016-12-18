@@ -22,11 +22,34 @@ App.painter = App.cable.subscriptions.create("PainterChannel", {
     }
     else if(n == 0){
       $.notify({
-        message: 'Kurwa malują po tablicy !!'
+        message: 'Ktoś pisze na TABLICY!'
       });
     }
     n++;
     if(n==1000) n = 0;
+    if('start' in data.cords) {
+      app.paths.push({
+          color: data.cords.color,
+          size: data.cords.size,
+          points: [{
+              x: data.cords.start[0]-20,
+              y: data.cords.start[1]-50
+          }]
+        });
+    }
+    else if('end' in data.cords) {
+      app.paths[app.paths.length - 1].points.push({
+          x: data.cords.end[0]-20,
+          y: data.cords.end[1]-50
+      });
+    }
+    else if('coords' in data.cords) {
+      app.paths[app.paths.length - 1].points.push({
+          x: data.cords.coords[0]-20,
+          y: data.cords.coords[1]-50
+      });
+    }
+    // Called when there's incoming data on the websocket for this channel
   },
   speak: function(data) {
     return this.perform('speak', data);

@@ -1,36 +1,84 @@
-<canvas id="canvas" width="800" height="600" style="border: 3px solid black"></canvas>
-
-
+<table>
+    <tr>
+        <td>
+            <canvas id="canvas" width="800" height="600" style="border: 3px solid black"></canvas>
+        </td>
+        <td>
+            <a id="black" href="#" class="btn" style="background-color: black; width: 40px; height: 40px;"></a><br>
+            <a id="white" href="#" class="btn" style="background-color: white; width: 40px; height: 40px; border: 1px solid;"></a><br>
+            <a id="red" href="#" class="btn" style="background-color: red; width: 40px; height: 40px;"></a><br>
+            <a id="green" href="#" class="btn" style="background-color: green; width: 40px; height: 40px;"></a><br>
+            <a id="blue" href="#" class="btn" style="background-color: blue; width: 40px; height: 40px;"></a><br>
+            <a id="size10" href="#" class="btn" style="border-radius: 10px; background-color: black; width: 10px; height: 10px; padding: 0px;"></a><br>
+            <a id="size20" href="#" class="btn" style="border-radius: 20px; background-color: black; width: 20px; height: 20px; padding: 0px;"></a><br>
+            <a id="size30" href="#" class="btn" style="border-radius: 30px; background-color: black; width: 30px; height: 30px; padding: 0px;"></a><br>
+            <a id="size40" href="#" class="btn" style="border-radius: 40px; background-color: black; width: 40px; height: 40px; padding: 0px;"></a><br>
+        </td>
+    </tr>
+</table>
 <script>
     var app = {
         input: {
             x: 0,
             y: 0,
-            mouseLeft: false
-        }
+            mouseLeft: false,
+            color: "black",
+            size: 10
+        },
+        paths: []
     };
 
     function onUpdate() {
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
+
+        for(var j = 0; j < app.paths.length; j++) {
+            var path = app.paths[j];
+            if(path.points.length < 2) continue;
+            ctx.save();
+            ctx.beginPath();
+            ctx.moveTo(path.points[0].x, path.points[0].y);
+            for(var i = 1; i < path.points.length; i++) {
+                ctx.lineTo(path.points[i].x, path.points[i].y);
+            }
+            ctx.strokeStyle = path.color;
+            ctx.lineWidth = path.size;
+            ctx.lineCap = 'round';
+            ctx.stroke();
+            //ctx.closePath();
+            ctx.restore();
+        }
+
         window.requestAnimationFrame(onUpdate);
     }
     window.onmousedown = function(e) {
         app.input.mouseLeft = true;
+        console.log("paint");
+        App.painter.speak({start:[app.input.x, app.input.y], color: app.color, size: app.size});
     };
     window.onmouseup = function(e) {
         app.input.mouseLeft = false;
+        App.painter.speak({end:[app.input.x, app.input.y]});
     };
     document.getElementById("canvas").addEventListener("mousemove", function(e) {
         var newx = e.clientX;
         var newy = e.clientY;
         if(app.input.mouseLeft) {
-            var canvas = document.getElementById("canvas");
-            var ctx = canvas.getContext("2d");
-            App.painter.speak({start:[app.input.x, app.input.y], end: [newx, newy], width: canvas.width, height: canvas.height });
-            }
+            App.painter.speak({coords: [newx, newy]});
+        }
         app.input.x = newx;
         app.input.y = newy;
     });
+
+    $("#black").click(function(e) { e.preventDefault(); app.color = "black"; });
+    $("#white").click(function(e) { e.preventDefault(); app.color = "white"; });
+    $("#red").click(function(e) { e.preventDefault(); app.color = "red"; });
+    $("#green").click(function(e) { e.preventDefault(); app.color = "green"; });
+    $("#blue").click(function(e) { e.preventDefault(); app.color = "blue"; });
+    $("#size10").click(function(e) { e.preventDefault(); app.size = 10; });
+    $("#size20").click(function(e) { e.preventDefault(); app.size = 20; });
+    $("#size30").click(function(e) { e.preventDefault(); app.size = 30; });
+    $("#size40").click(function(e) { e.preventDefault(); app.size = 40; });
+
     onUpdate();
 </script>
