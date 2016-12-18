@@ -1,0 +1,21 @@
+<table class="table table-bordered" style="margin-top: 5em;">
+  <thead>
+  <tr>
+    <th>Place</th>
+    <th>Avatar</th>
+    <th>Name</th>
+    <th>Number of points</th>
+  </tr>
+  </thead>
+  <tbody>
+
+<% @users.each_with_index  do |user, index| %>
+      <tr>
+        <td><%= index+1 %></td>
+        <td><img src="<%= image_url user.avatar.url %>" style="height:100px;width:100px;border-radius:5px;"/></td>
+        <td><%= user.full_name == ' ' ? user.email : user.full_name %></td>
+        <td><%=user.suma %></td>
+      </tr>
+<% end %>
+  </tbody>
+</table>

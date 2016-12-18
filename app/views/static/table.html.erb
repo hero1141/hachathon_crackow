@@ -1,5 +1,5 @@
-<script src="https://simplewebrtc.com/latest-v2.js"></script>
-<div class="col-md-8">
+
+<br>
 <table>
     <tr>
         <td>
@@ -15,6 +15,7 @@
             <a id="size20" href="#" class="btn" style="border-radius: 20px; background-color: black; width: 20px; height: 20px; padding: 0px;"></a><br>
             <a id="size30" href="#" class="btn" style="border-radius: 30px; background-color: black; width: 30px; height: 30px; padding: 0px;"></a><br>
             <a id="size40" href="#" class="btn" style="border-radius: 40px; background-color: black; width: 40px; height: 40px; padding: 0px;"></a><br>
+            <a id="clear" href="#" class="btn btn-danger"> Clear </a>
         </td>
     </tr>
 </table>
@@ -24,15 +25,18 @@
   <div id="remotesVideos"></div>
 </div>
 <script>
-    
+
     var app = {
+        cameraX: 0,
+        cameraY: 0,
+        cameraMove: false,
         input: {
             x: 0,
             y: 0,
-            mouseLeft: false,
-            color: "black",
-            size: 10
+            mouseLeft: false
         },
+        color: "black",
+        size: 10,
         paths: []
     };
 
@@ -40,10 +44,14 @@
         var canvas = document.getElementById("canvas");
         var ctx = canvas.getContext("2d");
 
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.translate(app.cameraX, app.cameraY);
         for(var j = 0; j < app.paths.length; j++) {
             var path = app.paths[j];
             if(path.points.length < 2) continue;
-            ctx.save();
+            //ctx.save();
             ctx.beginPath();
             ctx.moveTo(path.points[0].x, path.points[0].y);
             for(var i = 1; i < path.points.length; i++) {
@@ -51,26 +59,40 @@
             }
             ctx.strokeStyle = path.color;
             ctx.lineWidth = path.size;
-            ctx.lineCap = 'round';
+            ctx.lineCap = "round";
+            ctx.lineJoin = "round";
             ctx.stroke();
-            //ctx.closePath();
-            ctx.restore();
+            //ctx.restore();
         }
 
         window.requestAnimationFrame(onUpdate);
+
     }
+
     window.onmousedown = function(e) {
-        app.input.mouseLeft = true;
-        console.log("paint");
-        App.painter.speak({start:[app.input.x, app.input.y], color: app.color, size: app.size});
+        if(e.button == 1) app.cameraMove = true;
+        else {
+            app.input.mouseLeft = true;
+            App.painter.speak({start:[app.input.x, app.input.y], color: app.color, size: app.size});
+        }
     };
     window.onmouseup = function(e) {
-        app.input.mouseLeft = false;
-        App.painter.speak({end:[app.input.x, app.input.y]});
+        if(e.button == 1) app.cameraMove = false;
+        else {
+            app.input.mouseLeft = false;
+            App.painter.speak({end:[app.input.x, app.input.y]});
+        }
     };
     document.getElementById("canvas").addEventListener("mousemove", function(e) {
-        var newx = e.clientX;
-        var newy = e.clientY;
+        if(app.cameraMove) {
+            app.cameraX += e.movementX;
+            app.cameraY += e.movementY;
+        }
+
+        var canvas = document.getElementById("canvas");
+        var rect = canvas.getBoundingClientRect();
+        var newx = e.clientX - rect.left - app.cameraX;
+        var newy = e.clientY - rect.top - app.cameraY;
         if(app.input.mouseLeft) {
             App.painter.speak({coords: [newx, newy]});
         }
@@ -87,6 +109,7 @@
     $("#size20").click(function(e) { e.preventDefault(); app.size = 20; });
     $("#size30").click(function(e) { e.preventDefault(); app.size = 30; });
     $("#size40").click(function(e) { e.preventDefault(); app.size = 40; });
+    $("#clear").click(function(e) { e.preventDefault(); App.painter.speak({clear: "token"}); });
 
     onUpdate();
 </script>

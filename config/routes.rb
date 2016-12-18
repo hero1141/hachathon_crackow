@@ -15,11 +15,12 @@ Rails.application.routes.draw do
 
   resources :games, only: [:index, :new, :create, :show]
   root 'static#index'
-
+  get 'static/rank'
   resources :static
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   get 'static/index'
+
   get 'static/userposts/:id' => 'static#userposts'
   get '/table' => 'static#table'
   mount ActionCable.server, at: '/cable'

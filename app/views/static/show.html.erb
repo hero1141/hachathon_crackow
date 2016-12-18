@@ -16,37 +16,44 @@
               <table class="table table-user-information">
                 <tbody>
                 <tr>
-                  <td>Stanowisko:</td>
-                  <td><%= @user.department.nil?  ? 'Nie wprowadzono' : @user.department %></td>
+
+                  <td>Department:</td>
+
+                  <td><%= @user.department.nil?  ? 'Not introduced' : @user.department %></td>
                 </tr>
                 <tr>
                 <tr>
-                  <td>Płeć</td>
-                  <td><%= @user.gender.nil? ? 'Nie wprowadzono' : @user.plec %></td>
+                  <td>Gender</td>
+
+                  <td><%= @user.gender.nil? ? 'Not introduced' : @user.plec %></td>
                 </tr>
                 <tr>
-                  <td>Email</td>
+                  <td>Email:</td>
                   <td><%= @user.email %></td>
                 </tr>
-                <td>Numer telefonu</td>
-                <td><%= @user.phone.nil? ? 'Nie wprowadzono' : @user.phone %>
+
+                <td>Phone number</td>
+
+                <td><%= @user.phone.nil? ? 'Not introduced' : @user.phone %>
                 </td>
                 </tr>
                 </tbody>
               </table>
-                <%= link_to'Wszystkie posty',{ action: 'userposts'}, id: @user.id, class: 'btn btn-primary pull-right' %>
+
+                <%= link_to'All posts',{ action: 'userposts'}, id: @user.id, class: 'btn btn-primary pull-right' %>
             </div>
           </div>
         </div>
         <div class="panel-footer" style="min-height:50px">
           <% if current_user.id != @user.id %>
             <%= link_to(root_path, class: 'btn btn-success' ) do %>
-                Napisz &nbsp;<i class="glyphicon glyphicon-envelope"></i>
+                Write a message &nbsp;<i class="glyphicon glyphicon-envelope"></i>
             <% end %>
           <% else %>
               <span class="pull-right">
                 <%= link_to(edit_user_registration_path, class: 'btn btn-sm btn-warning') do %>
-                    Aktualizuj&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    Update&nbsp;<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    Edit your account <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 <% end %>
               </span>
           <% end %>

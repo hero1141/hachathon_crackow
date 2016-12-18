@@ -16,7 +16,6 @@
   <%= f.submit "Add post", class: "btn btn-success" %>
 <% end %>
 
-
 <% @posts.each do |p| %>
 <blockquote style="margin-top: 50px">
   <%= link_to(category_post_path(@category.id, p.id)) do %>
