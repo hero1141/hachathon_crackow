@@ -10,35 +10,35 @@
       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
-            <%= link_to "Strona główna", root_path, class:"navbar-brand" %>
+            <%= link_to "Home page", root_path, class:"navbar-brand" %>
           </div>
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <% if !current_user %>
                   <li>
                     <%= link_to(new_user_registration_path) do	 %>
-                        <span class="glyphicon glyphicon-user"></span> Zarejestruj się
+                        <span class="glyphicon glyphicon-user"></span> Sing up!
                     <% end %>
                   </li>
                   <li>
                     <%= link_to(new_user_session_path) do %>
-                        <span class="glyphicon glyphicon-log-in"></span> Zaloguj się
+                        <span class="glyphicon glyphicon-log-in"></span> Sign in!
                     <% end %>
                   </li>
                   <li>
                     <%= link_to(user_facebook_omniauth_authorize_path) do %>
-                        <i class="fa fa-facebook-official" aria-hidden="true"></i> Zaloguj przez facebook
+                        <i class="fa fa-facebook-official" aria-hidden="true"></i> Sing in by facebook!
                     <% end %>
                   </li>
               <% else %>
                   <li>
                     <%= link_to(destroy_user_session_path, method: 'delete') do %>
-                        <i class="fa fa-sign-out" aria-hidden="true"></i> Wyloguj się
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> Log out!
                     <% end %>
                   </li>
                   <li>
                     <%= link_to(static_path(current_user.id))	do %>
-                        <i class="fa fa-user-circle-o" aria-hidden="true"></i> Twój profil
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i> Your profile
                     <% end %>
                   </li>
               <% end %>
@@ -46,8 +46,6 @@
           </div>
         </div>
     </nav>
-
-
         <% if current_user %>
         <div class="container-fluid">
           <div class="row">
@@ -59,7 +57,6 @@
               </div>
             </div>
           </div>
-
         <% else %>
           <% if params[:action] == 'index' %>
             <%= render partial: "/layouts/slider" %>
@@ -71,11 +68,6 @@
             </div>
           </div>
         </div>
-
         <% end %>
-
-
-
-
   </body>
 </html>

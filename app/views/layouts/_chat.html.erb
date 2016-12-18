@@ -1,12 +1,13 @@
 <div class="chat-box-online-div">
     <div class="chat-box-online-head">
-        Piękny super zajebisty czat w chuj
+        Let chat with your helpmate
     </div>
     <div class="panel-body chat-box-online">
+    <h3 style="text-align: center; margin-bottom: 30px"> Users: </h3>
         <% User.where.not('id' => current_user.id).all.each do |u| %>
         <%= link_to messages_path(receiver_id: u.id) do %>
-            <div class="chat-box-online-right">
-                <%= u.first_name + " " + u.last_name %>
+            <div class="chat-box-online-right" style="text-align: center">
+                <i class="fa fa-user" aria-hidden="true" style="font-size: 20px; padding-left: 10px; color:black" > <%= u.first_name + " " + u.last_name %> </i>
             </div>
             <hr class="hr-clas-low" />
         <% end %>

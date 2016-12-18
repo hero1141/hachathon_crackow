@@ -1,15 +1,16 @@
 <div style="padding-top:3em;">
-
+ <h2 style="text-align: center"> Welcome in our company's blog </h2>
+ <h3 style="text-align: center"> Select the section which you are interested in </h3>
+<br>
   <% @categories.each do |category| %>
-
   <div class="col-md-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h4><%= category.name %></h4>
+        <h4 style="text-align: center"><%= category.name %></h4>
       </div>
       <div class="panel-body">
         <p><%= category.description %></p>
-        <%= link_to "Zobacz", category_path(category.id), style: 'margin-left:25%; width:50%', class: 'btn btn-primary' %>
+        <%= link_to "Let's blog! ", category_path(category.id), style: 'margin-left:25%; width:50%', class: 'btn btn-primary' %>
       </div>
     </div>
 
